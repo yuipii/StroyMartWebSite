@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог товаров - СтройМарт</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/catalog.css"> <!-- НОВЫЙ СSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header (такой же как в index.html) -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <img src="images/logo.png" alt="СтройМарт">
+                    <span>СтройМарт</span>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="contact-info">
+                        <span>📞 +7 (999) 123-45-67</span>
+                        <span>🕒 Ежедневно 8:00-22:00</span>
+                    </div>
+                    
+                    <div class="user-actions">
+                        <button class="auth-btn" id="loginBtn">Войти</button>
+                        <div class="cart">
+                            <span>🛒</span>
+                            <span class="cart-count">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html#materials">Стройматериалы</a></li>
+                    <li><a href="catalog.html?category=tools">Инструменты</a></li>
+                    <li><a href="catalog.html?category=plumbing">Сантехника</a></li>
+                    <li><a href="catalog.html?category=electrical">Электрика</a></li>
+                    <li><a href="catalog.html?category=paint">Лакокрасочные</a></li>
+                    <li><a href="index.html#discounts">Акции</a></li>
+                </ul>
+                
+                <div class="search">
+                    <input type="text" id="searchInput" placeholder="Поиск материалов...">
+                    <button onclick="performSearch()">Найти</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Каталог -->
+    <section class="catalog">
+        <div class="container">
+            <div class="catalog-header">
+                <h1 id="catalogTitle">Все товары</h1>
+                <div class="breadcrumbs">
+                    <a href="index.html">Главная</a> / <span id="breadcrumbCategory">Каталог</span>
+                </div>
+            </div>
+
+            <div class="catalog-layout">
+                <!-- Фильтры -->
+                <aside class="filters">
+                    <div class="filter-group">
+                        <h3>Категории</h3>
+                        <div class="filter-options">
+                            <label><input type="checkbox" value="tools" class="category-filter"> Инструменты</label>
+                            <label><input type="checkbox" value="plumbing" class="category-filter"> Сантехника</label>
+                            <label><input type="checkbox" value="electrical" class="category-filter"> Электрика</label>
+                            <label><input type="checkbox" value="paint" class="category-filter"> Лакокрасочные</label>
+                            <label><input type="checkbox" value="materials" class="category-filter"> Стройматериалы</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Цена, ₽</h3>
+                        <div class="price-range">
+                            <input type="number" id="minPrice" placeholder="0" min="0">
+                            <span>-</span>
+                            <input type="number" id="maxPrice" placeholder="50000" min="0">
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Бренд</h3>
+                        <div class="filter-options" id="brandFilters">
+                            <!-- Бренды будут добавляться через JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Наличие</h3>
+                        <div class="filter-options">
+                            <label><input type="checkbox" value="in_stock"> В наличии</label>
+                            <label><input type="checkbox" value="pre_order"> Под заказ</label>
+                        </div>
+                    </div>
+
+                    <button class="apply-filters" onclick="applyFilters()">Применить фильтры</button>
+                    <button class="reset-filters" onclick="resetFilters()">Сбросить фильтры</button>
+                </aside>
+
+                <!-- Товары -->
+                <main class="products-section">
+                    <div class="products-controls">
+                        <div class="sorting">
+                            <label>Сортировка:</label>
+                            <select id="sortSelect" onchange="sortProducts()">
+                                <option value="name_asc">По названию (А-Я)</option>
+                                <option value="name_desc">По названию (Я-А)</option>
+                                <option value="price_asc">По цене (возрастание)</option>
+                                <option value="price_desc">По цене (убывание)</option>
+                                <option value="popular">По популярности</option>
+                            </select>
+                        </div>
+                        <div class="products-count">
+                            Найдено: <span id="productsCount">0</span> товаров
+                        </div>
+                    </div>
+
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Товары будут добавляться через JavaScript -->
+                    </div>
+
+                    <div class="pagination" id="pagination">
+                        <!-- Пагинация будет добавляться через JavaScript -->
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (такой же как в index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>СтройМарт</h3>
+                    <p>Все для строительства и ремонта в одном месте</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Каталог</h4>
+                    <ul>
+                        <li><a href="catalog.html?category=tools">Инструменты</a></li>
+                        <li><a href="catalog.html?category=plumbing">Сантехника</a></li>
+                        <li><a href="catalog.html?category=electrical">Электрика</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>📞 +7 (999) 123-45-67</p>
+                    <p>📍 г. Москва, ул. Строителей, 15</p>
+                    <p>✉️ info@stroymart.ru</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 СтройМарт. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/catalog.js"></script> <!-- НОВЫЙ JS -->
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
