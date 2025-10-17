@@ -1,11 +1,11 @@
-// Расширенные данные товаров
+// Единый массив товаров для всего сайта
 const extendedProducts = [
     // Инструменты
     {
         id: 1,
         name: "Перфоратор Bosch GBH 2-26 DRE",
         price: 12490,
-        image: "images/products/tools.jpg",
+        image: "png/bosh.png",
         category: "tools",
         brand: "Bosch",
         inStock: true,
@@ -16,7 +16,7 @@ const extendedProducts = [
         id: 2,
         name: "Шуруповерт аккумуляторный Makita",
         price: 7890,
-        image: "images/products/tools.jpg",
+        image: "png/makita.jpg",
         category: "tools",
         brand: "Makita",
         inStock: true,
@@ -27,7 +27,7 @@ const extendedProducts = [
         id: 3,
         name: "Болгарка DeWalt DWE4207",
         price: 15600,
-        image: "images/products/tools.jpg",
+        image: "",
         category: "tools",
         brand: "DeWalt",
         inStock: false,
@@ -38,7 +38,7 @@ const extendedProducts = [
         id: 4,
         name: "Электролобзик Einhell",
         price: 4290,
-        image: "images/products/tools.jpg",
+        image: "png/Einhell.jpg",
         category: "tools",
         brand: "Einhell",
         inStock: true,
@@ -51,7 +51,7 @@ const extendedProducts = [
         id: 5,
         name: "Смеситель для раковины Grohe",
         price: 8450,
-        image: "images/heroes/promo-banner.jpg",
+        image: "images/products/plumbing.jpg",
         category: "plumbing",
         brand: "Grohe",
         inStock: true,
@@ -62,7 +62,7 @@ const extendedProducts = [
         id: 6,
         name: "Унитаз подвесной Cersanit",
         price: 25600,
-        image: "images/heroes/promo-banner.jpg",
+        image: "images/products/plumbing.jpg",
         category: "plumbing",
         brand: "Cersanit",
         inStock: true,
@@ -73,7 +73,7 @@ const extendedProducts = [
         id: 7,
         name: "Душевая система Hansgrohe",
         price: 42300,
-        image: "images/heroes/promo-banner.jpg",
+        image: "images/products/plumbing.jpg",
         category: "plumbing",
         brand: "Hansgrohe",
         inStock: false,
@@ -84,7 +84,7 @@ const extendedProducts = [
         id: 8,
         name: "Труба полипропиленовая 20мм",
         price: 85,
-        image: "images/heroes/promo-banner.jpg",
+        image: "images/products/plumbing.jpg",
         category: "plumbing",
         brand: "Политек",
         inStock: true,
@@ -97,7 +97,7 @@ const extendedProducts = [
         id: 9,
         name: "Розетка двойная Legrand",
         price: 340,
-        image: "images/icons/cart-icon.png",
+        image: "images/products/electrical.jpg",
         category: "electrical",
         brand: "Legrand",
         inStock: true,
@@ -108,7 +108,7 @@ const extendedProducts = [
         id: 10,
         name: "Выключатель двухклавишный Schneider",
         price: 290,
-        image: "images/icons/cart-icon.png",
+        image: "images/products/electrical.jpg",
         category: "electrical",
         brand: "Schneider",
         inStock: true,
@@ -119,7 +119,7 @@ const extendedProducts = [
         id: 11,
         name: "Светильник потолочный Gauss",
         price: 1200,
-        image: "images/icons/cart-icon.png",
+        image: "images/products/electrical.jpg",
         category: "electrical",
         brand: "Gauss",
         inStock: true,
@@ -130,7 +130,7 @@ const extendedProducts = [
         id: 12,
         name: "Кабель ВВГнг 3x2.5",
         price: 85,
-        image: "images/icons/cart-icon.png",
+        image: "images/products/electrical.jpg",
         category: "electrical",
         brand: "Энергокабель",
         inStock: true,
@@ -143,7 +143,7 @@ const extendedProducts = [
         id: 13,
         name: "Краска интерьерная Tikkurila 10л",
         price: 5600,
-        image: "images/icons/cart-icon.png",
+        image: "images/products/paint.jpg",
         category: "paint",
         brand: "Tikkurila",
         inStock: true,
@@ -154,7 +154,7 @@ const extendedProducts = [
         id: 14,
         name: "Эмаль по металлу Hammerite",
         price: 890,
-        image: "images/icons/cart-icon.png",
+        image: "images/products/paint.jpg",
         category: "paint",
         brand: "Hammerite",
         inStock: true,
@@ -165,7 +165,7 @@ const extendedProducts = [
         id: 15,
         name: "Лак паркетный Lacra",
         price: 3200,
-        image: "images/icons/cart-icon.png",
+        image: "images/products/paint.jpg",
         category: "paint",
         brand: "Lakra",
         inStock: false,
@@ -176,12 +176,58 @@ const extendedProducts = [
         id: 16,
         name: "Грунтовка универсальная Ceresit",
         price: 1450,
-        image: "images/icons/cart-icon.png",
+        image: "images/products/paint.jpg",
         category: "paint",
         brand: "Ceresit",
         inStock: true,
         popularity: 79,
         description: "Грунтовка глубокого проникновения 10л"
+    },
+    
+    // Стройматериалы
+    {
+        id: 17,
+        name: "Цемент М500 50кг",
+        price: 450,
+        image: "images/products/cement.jpg",
+        category: "materials",
+        brand: "Лафарж",
+        inStock: true,
+        popularity: 98,
+        description: "Портландцемент высокого качества"
+    },
+    {
+        id: 18,
+        name: "Кирпич строительный",
+        price: 25,
+        image: "images/products/bricks.jpg",
+        category: "materials",
+        brand: "Браер",
+        inStock: true,
+        popularity: 87,
+        description: "Керамический кирпич полнотелый"
+    },
+    {
+        id: 19,
+        name: "Плитка керамическая",
+        price: 850,
+        image: "images/products/tiles.jpg",
+        category: "materials",
+        brand: "Керама Марацци",
+        inStock: true,
+        popularity: 75,
+        description: "Напольная плитка 30x30 см"
+    },
+    {
+        id: 20,
+        name: "Гипсокартон 12.5мм",
+        price: 320,
+        image: "images/products/drywall.jpg",
+        category: "materials",
+        brand: "Кнауф",
+        inStock: true,
+        popularity: 83,
+        description: "Гипсокартонный лист стандартный"
     }
 ];
 
@@ -202,7 +248,34 @@ let currentFilters = {
 document.addEventListener('DOMContentLoaded', function() {
     initializeCatalog();
     setupBrandFilters();
+    setupFilterEventListeners();
 });
+
+// Настройка обработчиков событий для фильтров
+function setupFilterEventListeners() {
+    // Автоматическое применение фильтров при изменении
+    document.querySelectorAll('.category-filter, .brand-filter').forEach(checkbox => {
+        checkbox.addEventListener('change', applyFilters);
+    });
+    
+    document.querySelectorAll('input[value="in_stock"], input[value="pre_order"]').forEach(checkbox => {
+        checkbox.addEventListener('change', applyFilters);
+    });
+    
+    // Применение фильтров по цене при изменении
+    document.getElementById('minPrice').addEventListener('change', applyFilters);
+    document.getElementById('maxPrice').addEventListener('change', applyFilters);
+    
+    // Enter в поле поиска
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    }
+}
 
 // Инициализация каталога на основе URL параметров
 function initializeCatalog() {
@@ -212,18 +285,24 @@ function initializeCatalog() {
 
     if (category) {
         // Устанавливаем фильтр по категории
-        document.querySelector(`.category-filter[value="${category}"]`).checked = true;
-        currentFilters.categories = [category];
-        updateCatalogTitle(category);
+        const categoryCheckbox = document.querySelector(`.category-filter[value="${category}"]`);
+        if (categoryCheckbox) {
+            categoryCheckbox.checked = true;
+            currentFilters.categories = [category];
+            updateCatalogTitle(category);
+        }
     }
 
     if (search) {
         // Устанавливаем поисковый запрос
-        document.getElementById('searchInput').value = search;
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.value = search;
+        }
         performSearchFromURL(search);
+    } else {
+        applyFilters();
     }
-
-    applyFilters();
 }
 
 // Обновление заголовка каталога
@@ -244,20 +323,31 @@ function updateCatalogTitle(category) {
         'materials': 'Стройматериалы'
     };
 
-    document.getElementById('catalogTitle').textContent = titles[category] || 'Все товары';
-    document.getElementById('breadcrumbCategory').textContent = breadcrumbs[category] || 'Каталог';
+    const catalogTitle = document.getElementById('catalogTitle');
+    const breadcrumbCategory = document.getElementById('breadcrumbCategory');
+    
+    if (catalogTitle) {
+        catalogTitle.textContent = titles[category] || 'Все товары';
+    }
+    if (breadcrumbCategory) {
+        breadcrumbCategory.textContent = breadcrumbs[category] || 'Каталог';
+    }
 }
 
 // Настройка фильтров по брендам
 function setupBrandFilters() {
-    const brands = [...new Set(extendedProducts.map(product => product.brand))];
+    const brands = [...new Set(extendedProducts.map(product => product.brand))].sort();
     const brandFiltersContainer = document.getElementById('brandFilters');
     
-    brands.forEach(brand => {
-        const label = document.createElement('label');
-        label.innerHTML = `<input type="checkbox" value="${brand}" class="brand-filter"> ${brand}`;
-        brandFiltersContainer.appendChild(label);
-    });
+    if (brandFiltersContainer) {
+        brandFiltersContainer.innerHTML = '';
+        
+        brands.forEach(brand => {
+            const label = document.createElement('label');
+            label.innerHTML = `<input type="checkbox" value="${brand}" class="brand-filter"> ${brand}`;
+            brandFiltersContainer.appendChild(label);
+        });
+    }
 }
 
 // Применение фильтров
@@ -318,7 +408,11 @@ function resetFilters() {
     document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
     document.getElementById('minPrice').value = '';
     document.getElementById('maxPrice').value = '';
-    document.getElementById('sortSelect').value = 'name_asc';
+    
+    const sortSelect = document.getElementById('sortSelect');
+    if (sortSelect) {
+        sortSelect.value = 'name_asc';
+    }
     
     currentFilters = {
         categories: [],
@@ -334,7 +428,10 @@ function resetFilters() {
 
 // Сортировка товаров
 function sortProducts() {
-    const sortValue = document.getElementById('sortSelect').value;
+    const sortSelect = document.getElementById('sortSelect');
+    if (!sortSelect) return;
+    
+    const sortValue = sortSelect.value;
     
     switch(sortValue) {
         case 'name_asc':
@@ -363,6 +460,8 @@ function displayProducts() {
     const productsGrid = document.getElementById('productsGrid');
     const pagination = document.getElementById('pagination');
     
+    if (!productsGrid) return;
+    
     productsGrid.innerHTML = '';
     
     if (currentProducts.length === 0) {
@@ -372,7 +471,9 @@ function displayProducts() {
                 <p>Попробуйте изменить параметры фильтрации</p>
             </div>
         `;
-        pagination.innerHTML = '';
+        if (pagination) {
+            pagination.innerHTML = '';
+        }
         return;
     }
     
@@ -389,7 +490,9 @@ function displayProducts() {
     });
     
     // Отображение пагинации
-    renderPagination(totalPages);
+    if (pagination) {
+        renderPagination(totalPages);
+    }
 }
 
 // Создание карточки товара для каталога
@@ -397,7 +500,7 @@ function createCatalogProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
     card.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" class="product-image">
+        <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='images/products/default.jpg'">
         <div class="product-info">
             <div class="product-badge ${product.inStock ? 'in-stock' : 'out-of-stock'}">
                 ${product.inStock ? 'В наличии' : 'Под заказ'}
@@ -406,7 +509,7 @@ function createCatalogProductCard(product) {
             <p class="product-brand">Бренд: ${product.brand}</p>
             <div class="product-price">${product.price.toLocaleString()} ₽</div>
             <div class="product-actions">
-                <button class="buy-btn" onclick="addToCart(${product.id})" ${!product.inStock ? 'disabled' : ''}>
+                <button class="buy-btn" onclick="addToCartFromCatalog(${product.id})" ${!product.inStock ? 'disabled' : ''}>
                     ${product.inStock ? 'В корзину' : 'Нет в наличии'}
                 </button>
             </div>
@@ -418,6 +521,8 @@ function createCatalogProductCard(product) {
 // Пагинация
 function renderPagination(totalPages) {
     const pagination = document.getElementById('pagination');
+    if (!pagination) return;
+    
     pagination.innerHTML = '';
     
     if (totalPages <= 1) return;
@@ -430,7 +535,15 @@ function renderPagination(totalPages) {
     pagination.appendChild(prevButton);
     
     // Номера страниц
-    for (let i = 1; i <= totalPages; i++) {
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage + 1 < maxVisiblePages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
         const pageButton = document.createElement('button');
         pageButton.textContent = i;
         pageButton.className = currentPage === i ? 'active' : '';
@@ -455,7 +568,10 @@ function changePage(page) {
 
 // Обновление счетчика товаров
 function updateProductsCount() {
-    document.getElementById('productsCount').textContent = currentProducts.length;
+    const productsCountElement = document.getElementById('productsCount');
+    if (productsCountElement) {
+        productsCountElement.textContent = currentProducts.length;
+    }
 }
 
 // Поиск из URL
@@ -463,7 +579,8 @@ function performSearchFromURL(searchTerm) {
     const searchResults = extendedProducts.filter(product => 
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.brand.toLowerCase().includes(searchTerm.toLowerCase())
+        product.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchTerm.toLowerCase())
     );
     
     currentProducts = searchResults;
@@ -471,13 +588,22 @@ function performSearchFromURL(searchTerm) {
     displayProducts();
     updateProductsCount();
     
-    document.getElementById('catalogTitle').textContent = `Результаты поиска: "${searchTerm}"`;
-    document.getElementById('breadcrumbCategory').textContent = 'Поиск';
+    const catalogTitle = document.getElementById('catalogTitle');
+    const breadcrumbCategory = document.getElementById('breadcrumbCategory');
+    
+    if (catalogTitle) {
+        catalogTitle.textContent = `Результаты поиска: "${searchTerm}"`;
+    }
+    if (breadcrumbCategory) {
+        breadcrumbCategory.textContent = 'Поиск';
+    }
 }
 
 // Поиск товаров
 function performSearch() {
     const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+    
     const searchTerm = searchInput.value.trim();
     
     if (searchTerm) {
@@ -486,8 +612,8 @@ function performSearch() {
     }
 }
 
-// Добавление в корзину (обновленная функция)
-function addToCart(productId) {
+// Добавление в корзину из каталога
+function addToCartFromCatalog(productId) {
     const product = extendedProducts.find(p => p.id === productId);
     if (product) {
         if (!product.inStock) {
@@ -495,18 +621,41 @@ function addToCart(productId) {
             return;
         }
         
-        const existingItem = cart.find(item => item.id === productId);
-        
-        if (existingItem) {
-            existingItem.quantity++;
+        // Используем глобальную функцию addToCart из cart.js
+        if (typeof addToCart === 'function') {
+            addToCart(productId);
         } else {
-            cart.push({
-                ...product,
-                quantity: 1
-            });
+            console.error('Функция addToCart не найдена');
         }
-        
-        updateCartCount();
-        showNotification(`Добавлено в корзину: ${product.name}`);
     }
+}
+
+// Создание карточки товара для каталога
+function createCatalogProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    
+    // Проверяем наличие изображения и добавляем fallback
+    const imageSrc = product.image && product.image !== '' 
+        ? product.image 
+        : 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjhGOUZBIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNCRDNDM0MiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5GPPC90ZXh0Pgo8L3N2Zz4K';
+    
+    card.innerHTML = `
+        <img src="${imageSrc}" alt="${product.name}" class="product-image" 
+             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjhGOUZBIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNCRDNDM0MiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5GPPC90ZXh0Pgo8L3N2Zz4K'">
+        <div class="product-info">
+            <div class="product-badge ${product.inStock ? 'in-stock' : 'out-of-stock'}">
+                ${product.inStock ? 'В наличии' : 'Под заказ'}
+            </div>
+            <h3 class="product-title">${product.name}</h3>
+            <p class="product-brand">Бренд: ${product.brand}</p>
+            <div class="product-price">${product.price.toLocaleString()} ₽</div>
+            <div class="product-actions">
+                <button class="buy-btn" onclick="addToCartFromCatalog(${product.id})" ${!product.inStock ? 'disabled' : ''}>
+                    ${product.inStock ? 'В корзину' : 'Нет в наличии'}
+                </button>
+            </div>
+        </div>
+    `;
+    return card;
 }

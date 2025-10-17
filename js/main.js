@@ -1,63 +1,82 @@
-// Sample product data
-const products = [
-    {
-        id: 1,
-        name: "Цемент М500 50кг",
-        price: 450,
-        image: "images/products/cement.jpg",
-        category: "materials"
-    },
-    {
-        id: 2,
-        name: "Кирпич строительный",
-        price: 25,
-        image: "images/products/bricks.jpg",
-        category: "materials"
-    },
-    {
-        id: 3,
-        name: "Перфоратор Bosch",
-        price: 12000,
-        image: "images/products/tools.jpg",
-        category: "tools"
-    },
-    {
-        id: 4,
-        name: "Краска белая 10л",
-        price: 2800,
-        image: "images/icons/cart-icon.png",
-        category: "paint"
-    },
-    {
-        id: 5,
-        name: "Плитка керамическая",
-        price: 850,
-        image: "images/heroes/promo-banner.jpg",
-        category: "materials"
-    },
-    {
-        id: 6,
-        name: "Шуруповерт аккумуляторный",
-        price: 5600,
-        image: "images/products/tools.jpg",
-        category: "tools"
-    }
-];
+// Используем единый массив товаров из catalog.js
+// Для главной страницы показываем только популярные товары
 
 // Initialize the site
 document.addEventListener('DOMContentLoaded', function() {
-    displayProducts();
+    displayPopularProducts();
     setupEventListeners();
 });
 
-// Display products in grid
-function displayProducts() {
+// Display popular products in grid
+function displayPopularProducts() {
     const productGrid = document.querySelector('.product-grid');
+    if (!productGrid) return;
     
-    products.forEach(product => {
+    // Берем товары из extendedProducts (должны быть доступны глобально)
+    const productsToShow = typeof extendedProducts !== 'undefined' 
+        ? extendedProducts.filter(p => p.popularity > 80).slice(0, 6)
+        : getFallbackProducts();
+    
+    productGrid.innerHTML = '';
+    
+    productsToShow.forEach(product => {
         const productCard = createProductCard(product);
         productGrid.appendChild(productCard);
     });
+}
+
+// Fallback products if extendedProducts is not available
+function getFallbackProducts() {
+    return [
+        {
+            id: 1,
+            name: "Цемент М500 50кг",
+            price: 450,
+            image: "png/cement1.jpg",
+            category: "materials",
+            inStock: true
+        },
+        {
+            id: 2,
+            name: "Кирпич строительный",
+            price: 25,
+            image: "png/block.jpg",
+            category: "materials",
+            inStock: true
+        },
+        {
+            id: 3,
+            name: "Перфоратор Bosch",
+            price: 12000,
+            image: "png/tools1.jpg",
+            category: "tools",
+            inStock: true
+        },
+        {
+            id: 4,
+            name: "Краска белая 10л",
+            price: 2800,
+            image: "png/white.jpg",
+            category: "paint",
+            inStock: true
+        },
+        {
+            id: 5,
+            name: "Плитка керамическая",
+            price: 850,
+            image: "png/plitka.jpg",
+            category: "materials",
+            inStock: true
+        },
+        {
+            id: 6,
+            name: "Шуруповерт аккумуляторный",
+            price: 5600,
+            image: "png/tools2.jpg",
+            category: "tools",
+            inStock: true
+        }
+    ];
 }
 
 // Create product card HTML
@@ -65,10 +84,10 @@ function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
     card.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" class="product-image">
+        <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='images/products/default.jpg'">
         <div class="product-info">
             <h3 class="product-title">${product.name}</h3>
-            <div class="product-price">${product.price} ₽</div>
+            <div class="product-price">${product.price.toLocaleString()} ₽</div>
             <div class="product-actions">
                 <button class="buy-btn" onclick="addToCart(${product.id})">В корзину</button>
             </div>
@@ -83,43 +102,48 @@ function setupEventListeners() {
     document.querySelectorAll('.category-card').forEach(card => {
         card.addEventListener('click', function() {
             const categoryName = this.querySelector('h3').textContent;
-            alert(`Переход в категорию: ${categoryName}`);
+            const categoryMap = {
+                'Стройматериалы': 'materials',
+                'Инструменты': 'tools',
+                'Сантехника': 'plumbing',
+                'Электрика': 'electrical'
+            };
+            
+            const categoryKey = categoryMap[categoryName];
+            if (categoryKey) {
+                window.location.href = `catalog.html?category=${categoryKey}`;
+            }
         });
     });
 
     // CTA buttons
-    document.querySelector('.cta-button').addEventListener('click', function() {
-        document.querySelector('#materials').scrollIntoView({
-            behavior: 'smooth'
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+        ctaButton.addEventListener('click', function() {
+            window.location.href = 'catalog.html';
         });
-    });
-
-    document.querySelector('.promo-btn').addEventListener('click', function() {
-        document.getElementById('loginBtn').click();
-    });
-}
-
-// Search functionality (basic)
-document.querySelector('.search button').addEventListener('click', function() {
-    const searchTerm = document.querySelector('.search input').value;
-    if (searchTerm) {
-        alert(`Поиск: ${searchTerm}`);
-        // Here you would implement actual search
     }
-});
-// Добавьте эту функцию в конец файла main.js
-function performSearch() {
-    const searchInput = document.getElementById('searchInput');
-    const searchTerm = searchInput.value.trim();
+
+    const promoButton = document.querySelector('.promo-btn');
+    if (promoButton) {
+        promoButton.addEventListener('click', function() {
+            document.getElementById('loginBtn').click();
+        });
+    }
     
-    if (searchTerm) {
-        window.location.href = `catalog.html?search=${encodeURIComponent(searchTerm)}`;
-    }
+    // Search functionality
+    setupSearch();
 }
 
-// Добавьте обработчик Enter в поле поиска
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
+// Search functionality
+function setupSearch() {
+    const searchButton = document.querySelector('.search button');
+    const searchInput = document.querySelector('.search input');
+    
+    if (searchButton) {
+        searchButton.addEventListener('click', performSearch);
+    }
+    
     if (searchInput) {
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -127,4 +151,40 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-});
+}
+
+// Global search function
+function performSearch() {
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+    
+    const searchTerm = searchInput.value.trim();
+    
+    if (searchTerm) {
+        window.location.href = `catalog.html?search=${encodeURIComponent(searchTerm)}`;
+    }
+}
+
+// Create product card HTML
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    
+    // Проверяем наличие изображения и добавляем fallback
+    const imageSrc = product.image && product.image !== '' 
+        ? product.image 
+        : 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjhGOUZBIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNCRDNDM0MiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5GPPC90ZXh0Pgo8L3N2Zz4K';
+    
+    card.innerHTML = `
+        <img src="${imageSrc}" alt="${product.name}" class="product-image" 
+             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjhGOUZBIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNCRDNDM0MiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7wn5GPPC90ZXh0Pgo8L3N2Zz4K'">
+        <div class="product-info">
+            <h3 class="product-title">${product.name}</h3>
+            <div class="product-price">${product.price.toLocaleString()} ₽</div>
+            <div class="product-actions">
+                <button class="buy-btn" onclick="addToCart(${product.id})">В корзину</button>
+            </div>
+        </div>
+    `;
+    return card;
+}
